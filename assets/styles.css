@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    font-family: 'Poppins', sans-serif;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before,
+body::after {
+    content: '❤';
+    position: fixed;
+    font-size: 20px;
+    animation: float 6s infinite;
+    opacity: 0.6;
+}
+
+body::before {
+    left: 10%;
+    top: 20%;
+    animation-delay: 0s;
+}
+
+body::after {
+    right: 10%;
+    bottom: 20%;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5em;
+    color: #ff4757;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.yes-button, .no-button {
+    font-size: 1.5em;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.yes-button {
+    background: linear-gradient(45deg, #ff4757, #ff6b6b);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+}
+
+.yes-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+}
+
+.no-button {
+    background: linear-gradient(45deg, #ff8e8e, #ffa5a5);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 142, 142, 0.3);
+}
+
+.no-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 142, 142, 0.4);
+}
+
+.gif_container {
+    margin-top: 30px;
+    padding: 15px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gif_container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.gif_container img:hover {
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+    
+    .yes-button, .no-button {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+    
+    .container {
+        padding: 1.5rem;
+        margin: 20px;
+    }
+}
