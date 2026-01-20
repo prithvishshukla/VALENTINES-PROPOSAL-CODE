@@ -5,14 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knew you would say yes!</title>
+    <meta name="theme-color" content="#ff6aa2">
     <link rel="stylesheet" href="./yes_style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="floating-hearts" aria-hidden="true"></div>
+
+    <main class="container" role="main">
         <h1 class="header_text">Knew you would say yes!</h1>
+        <p class="sub_text">Okayyy cute. Now come here, Valentine. 💞</p>
+
         <div class="gif_container">
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif" alt="Celebration gif">
         </div>
-    </div>
+
+        <a class="back_link" href="../index.html">Replay the question ↩</a>
+    </main>
+
+    <script>
+        (function () {
+            const container = document.querySelector('.floating-hearts');
+            if (!container) return;
+            const hearts = ['❤', '💗', '💖', '💕', '💘'];
+            const rand = (a, b) => Math.random() * (b - a) + a;
+
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < 24; i++) {
+                const el = document.createElement('span');
+                el.className = 'heart';
+                el.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+                el.style.setProperty('--x', `${Math.floor(rand(0, 100))}vw`);
+                el.style.setProperty('--size', `${Math.floor(rand(14, 28))}px`);
+                el.style.setProperty('--opacity', rand(0.25, 0.65).toFixed(2));
+                el.style.setProperty('--dur', `${rand(7, 13).toFixed(2)}s`);
+                el.style.setProperty('--rot', `${Math.floor(rand(-18, 18))}deg`);
+                el.style.setProperty('--drift', `${Math.floor(rand(-18, 18))}vw`);
+                el.style.animationDelay = `${rand(0, 6).toFixed(2)}s`;
+                frag.appendChild(el);
+            }
+            container.appendChild(frag);
+        })();
+    </script>
 </body>
 </html>
