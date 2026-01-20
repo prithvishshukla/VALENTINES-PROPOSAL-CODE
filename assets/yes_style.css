@@ -1,24 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --bg-a: #ff6aa2;
+    --bg-b: #ffd6e7;
+    --bg-c: #c7f0ff;
+    --ink: #2a2230;
+    --muted: rgba(42, 34, 48, 0.72);
+    --card: rgba(255, 255, 255, 0.75);
+    --card-strong: rgba(255, 255, 255, 0.88);
+    --stroke: rgba(255, 255, 255, 0.5);
+    --shadow: 0 18px 55px rgba(255, 60, 140, 0.18);
+    --shadow-soft: 0 10px 30px rgba(30, 20, 40, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    background-color: #f9e3e3;
-    font-family: 'Arial', sans-serif;
+    padding: 24px;
+    background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 60%),
+        radial-gradient(900px 600px at 90% 20%, rgba(199, 240, 255, 0.65), rgba(199, 240, 255, 0) 55%),
+        radial-gradient(1000px 700px at 40% 110%, rgba(255, 214, 231, 0.8), rgba(255, 214, 231, 0) 60%),
+        linear-gradient(135deg, var(--bg-a), var(--bg-b));
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    color: var(--ink);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 35%),
+        radial-gradient(circle at 80% 55%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 38%),
+        radial-gradient(circle at 35% 85%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 35%);
+    opacity: 0.85;
+}
+
+.floating-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-hearts .heart {
+    position: absolute;
+    left: var(--x);
+    top: calc(100% + 30px);
+    font-size: var(--size);
+    opacity: var(--opacity);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
+    animation: floatUp var(--dur) linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(var(--rot));
+    }
+    100% {
+        transform: translate3d(var(--drift), calc(-120vh), 0) rotate(calc(var(--rot) + 35deg));
+    }
 }
 
 .container {
     text-align: center;
+    width: min(720px, 100%);
+    background: var(--card);
+    padding: clamp(18px, 4vw, 34px);
+    border-radius: 26px;
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow), var(--shadow-soft);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    position: relative;
+    z-index: 1;
+    animation: popIn 700ms ease-out;
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: translateY(14px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .header_text {
-    font-size: 3em;
-    color: #d32f2f;
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.3rem, 5vw, 3.6rem);
+    color: #ff2f7e;
+    margin: 0 0 10px;
+    text-shadow: 0 10px 20px rgba(255, 47, 126, 0.16);
+}
+
+.sub_text {
+    margin: 0 auto 18px;
+    max-width: 48ch;
+    color: var(--muted);
+    font-size: clamp(1rem, 2.1vw, 1.15rem);
+    line-height: 1.45;
 }
 
 .gif_container img {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto; 
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.gif_container {
+    background: var(--card-strong);
+    border-radius: 18px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.back_link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff2f7e, #ff6aa2);
+    box-shadow: 0 12px 28px rgba(255, 47, 126, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    font-weight: 600;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.back_link:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 16px 34px rgba(255, 47, 126, 0.32);
+}
+
+.back_link:active {
+    transform: translateY(0) scale(1.01);
+}
+
+.back_link:focus-visible {
+    outline: 3px solid rgba(255, 47, 126, 0.35);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
